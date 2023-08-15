@@ -21,7 +21,7 @@ To create an instance of the `ThreadPool` class, you need to specify the initial
 int main()
 {
     // Create a ThreadPool with 4 initial worker threads
-    ilrd::ThreadPool threadPool(4);
+    ThreadPool threadPool(4);
 
     // ...
 }
@@ -33,7 +33,7 @@ You can add tasks to the ThreadPool using the Add method. Tasks can be of variou
 ```cpp
 // Example of adding a function task to the ThreadPool
 std::function<void(void)> myFunction = []() { /* Task code here */ };
-threadPool.Add(std::make_shared<ilrd::ThreadPool::FunctionTask>(myFunction), ilrd::ThreadPool::Priority::MEDIUM);
+threadPool.Add(std::make_shared<ThreadPool::FunctionTask>(myFunction), ThreadPool::Priority::MEDIUM);
 
 // ...
 ```
@@ -60,8 +60,8 @@ The ThreadPool also supports future tasks that return a value upon completion. Y
 ```cpp
 // Example of adding a future task to the ThreadPool
 std::function<int(void)> myFutureFunction = []() { return 42; };
-auto futureTask = std::make_shared<ilrd::ThreadPool::FutureTask<int>>(myFutureFunction);
-threadPool.Add(futureTask, ilrd::ThreadPool::Priority::HIGH);
+auto futureTask = std::make_shared<ThreadPool::FutureTask<int>>(myFutureFunction);
+threadPool.Add(futureTask, ThreadPool::Priority::HIGH);
 
 // Wait for the task to complete and get the result
 int result = futureTask->Get();
@@ -70,7 +70,7 @@ int result = futureTask->Get();
 ```
 ### Requirements
 C++20 or later
-The priority_queue.hpp, waitable_queue.hpp, and utils.hpp headers provided by ILRD.
+The priority_queue.hpp, waitable_queue.hpp, and utils.hpp headers.
 
 
 
